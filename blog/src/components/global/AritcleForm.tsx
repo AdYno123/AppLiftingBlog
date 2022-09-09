@@ -22,6 +22,7 @@ import {
   IImageSend,
   IImageSendArray,
 } from "../../constans/stored-interface";
+import cat from "../../images/cat.jpg";
 
 interface IProps {
   FormType: EarticleFormIsOn;
@@ -220,22 +221,47 @@ const AritcleForm: React.FC<IProps> = (props) => {
           </div>
           <div className="row-input mt-8">
             <label className="font-semibold">Featured image</label>
-            <div className="input-holder mt-2">
-              <input
-                style={{ display: "none" }}
-                ref={inputFile}
-                value={image}
-                type="file"
-                onChange={handleFileChange}
-              />
+            {props.FormType === EarticleFormIsOn.Edit ? (
+              <>
+                <img src={cat} className="w-28" />
+                <input
+                  style={{ display: "none" }}
+                  ref={inputFile}
+                  value={image}
+                  type="file"
+                  onChange={handleFileChange}
+                />
+                <div className="flex">
+                  <p
+                    className=" text-blue-400 py-2 pr-3  border-r"
+                    onClick={handleClick}
+                  >
+                    Upload an Image
+                  </p>
 
-              <button
-                className=" bg-gray-500 p-2 px-3 rounded text-white"
-                onClick={handleClick}
-              >
-                Upload an Image
-              </button>
-            </div>
+                  <p className="text-red-400 p-2 px-3">Delete</p>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="input-holder mt-2">
+                  <input
+                    style={{ display: "none" }}
+                    ref={inputFile}
+                    value={image}
+                    type="file"
+                    onChange={handleFileChange}
+                  />
+
+                  <button
+                    className=" bg-gray-500 p-2 px-3 rounded text-white"
+                    onClick={handleClick}
+                  >
+                    Upload an Image
+                  </button>
+                </div>
+              </>
+            )}
           </div>
           <div className="row-input mt-8">
             <label className="font-semibold">Content</label>
